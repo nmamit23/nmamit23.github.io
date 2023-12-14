@@ -21,6 +21,11 @@ function fsgpa()
     sgpa = (vmat*3+vphy*4+vbe*3+veng*2+vpy*3+vcs*3+vmatlab*1)/19.00;
     document.getElementById("answer").value = sgpa.toFixed(4);
 }
+	var select = document.querySelector('select');
+select.addEventListener('change', function() {
+  var url = this.value;
+  window.open(url, '_blank');
+});
 </script>
 
 <style>
@@ -123,7 +128,7 @@ function fsgpa()
 <center>
 
 <nav>
-  <a href="https://www.linkedin.com/in/srujanmpadmashali">MADE BY SRUJAN MP</a>
+  <a href="https://www.linkedin.com/in/srujanmpadmashali" style=”font-size: 13px;”>MADE BY SRUJAN MP</a>
   <ul>
 	  
     <li><a>
