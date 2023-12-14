@@ -1,1 +1,61 @@
-<html><body><h1>HELLO WORLD</h1><body></html>
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans:400,700">
+<title>SGPA CALCULATOR</title>
+<script>
+function fsgpa()
+{
+    var vmat,vphy,vbe,veng,vcs,vpy,vmatlab;
+  
+    vmat = parseInt(document.getElementById("mat").value);
+    vphy = parseInt(document.getElementById("phy").value);
+    vpy = parseInt(document.getElementById("py").value);  
+    vbe = parseInt(document.getElementById("be").value);
+    vcs = parseInt(document.getElementById("cs").value);
+    veng = parseInt(document.getElementById("eng").value);
+    vmatlab = parseInt(document.getElementById("matlab").value);
+  
+    sgpa = (vmat*3+vphy*4+vbe*3+veng*2+vpy*3+vcs*3+vmatlab*1)/19.00;
+    document.getElementById("answer").value = sgpa.toFixed(4);
+}
+</script>
+
+<style>
+	input{
+    display: grid;
+    width:50%;
+    }
+   
+    *{
+    
+    font-family: "Google Sans", sans-serif;
+    }
+
+</style>
+
+</head>
+<body>
+<center>
+
+<p>SGPA CALCULATOR USING GRADE POINTS</p>
+
+
+<p>MATHS: <input id="mat"></p>
+<p>PHY: <input id="phy"></p>
+<p>PY: <input id="py"></p>
+<p>BE: <input id="be"></p>
+<p>CS: <input id="cs"></p>
+<p>ENG: <input id="eng"></p>
+<p>MATLAB: <input id="matlab"></p>
+
+
+<button onclick="fsgpa()">Submit</button>
+<p>SGPA = <input id="answer"></p>
+<br>
+<br>
+<br>
+<center><img src="https://d27jswm5an3efw.cloudfront.net/app/uploads/2019/07/insert-image-html-3-768x510.jpg" width="50%"><center>
+<center>
+</body>
+</html>
