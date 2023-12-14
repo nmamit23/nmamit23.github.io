@@ -21,11 +21,12 @@ function fsgpa()
     sgpa = (vmat*3+vphy*4+vbe*3+veng*2+vpy*3+vcs*3+vmatlab*1)/19.00;
     document.getElementById("answer").value = sgpa.toFixed(4);
 }
-	var select = document.querySelector('select');
-select.addEventListener('change', function() {
-  var url = this.value;
-  window.open(url, '_blank');
-});
+function redirectToMyPage(){
+ optionSelected = document.getElementById('mySelect').value;
+ //redirec to my url
+ window.location.replace(optionSelected);
+ 
+}//end function redirectToMyPage
 </script>
 
 <style>
@@ -133,10 +134,11 @@ select.addEventListener('change', function() {
 	  
     <li><a>
     <select>
-  <option value="#" selected="selected"></option>
+  <option value="#" disabled selected>select.</option>
   <option value="https://www.instagram.com/srujanmpadmashali/">@instagram</option>
 <option value="#">link1</option>
-    </select>    
+    </select>
+    <button onclick="redirectToMyPage();">Go !</button>
      </a></li>
 	  
     <li><a href="#"></a></li>
