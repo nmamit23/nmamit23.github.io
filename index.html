@@ -22,10 +22,12 @@ function fsgpa()
 </script>
 
 <style>
-	input{
+	
+    input{
     display: grid;
     width:50%;
-text-align: center;
+    text-align: center;
+    background-color :#eee;
     }
    
     *{
@@ -33,45 +35,40 @@ text-align: center;
     font-family: "Google Sans", sans-serif;
     }
 
+    nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #eee;
+    }
 
+    .logo {
+    height: 50px;
+    }
+	
+    ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    }
 
+    li {
+    display: inline-block;
+    padding: 0.5rem;
+    }
 
-
-
-	nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
-  background-color: #eee;
-}
-
-.logo {
-  
-  height: 50px;
-}
-
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  padding: 0.5rem;
-}
-
-a {
-  text-decoration: none;
-  color: #333;
-}
-
+    a {
+    text-decoration: none;
+    color: #333;
+    }
 
 </style>
 
 </head>
+	
 <body>
+	
 <nav>
   <a href="nmamit.nitte.edu.in"><img src="logo.png" alt="Logo" class="logo"></a>
   <ul>
@@ -83,7 +80,7 @@ a {
 
 <center>
 
-<p class="ff"><b>SGPA CALCULATOR USING GRADE POINTS</b></p>
+<p><b>SGPA CALCULATOR USING GRADE POINTS</b></p>
 
 
 <p>MATHS: <input id="mat"></p>
@@ -96,6 +93,7 @@ a {
 
 
 <button onclick="fsgpa()">Submit</button>
+	
 <p>SGPA = <input id="answer"></p>
 <br>
 <br>
