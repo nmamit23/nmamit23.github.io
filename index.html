@@ -1,148 +1,142 @@
 <!DOCTYPE html>
 <html>
-<head>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans:400,700">
-<link rel="icon" href="icon.png" type="image/icon type">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SGPA CALCULATOR</title>
-<script>
-function fsgpa()
-{
-    var vmat,vphy,vbe,veng,vcs,vpy,vmatlab;
-  
-    vmat = parseInt(document.getElementById("mat").value);
-    vphy = parseInt(document.getElementById("phy").value);
-    vpy = parseInt(document.getElementById("py").value);  
-    vbe = parseInt(document.getElementById("be").value);
-    vcs = parseInt(document.getElementById("cs").value);
-    veng = parseInt(document.getElementById("eng").value);
-    vmatlab = parseInt(document.getElementById("matlab").value);
-  
-    sgpa = (vmat*3+vphy*4+vbe*3+veng*2+vpy*3+vcs*3+vmatlab*1)/19.00;
-    document.getElementById("answer").value = sgpa.toFixed(4);
-}
-function redirectToMyPage(){
- optionSelected = document.getElementById('mySelect').value;
- //redirec to my url
- window.location.replace(optionSelected);
- 
-}//end function redirectToMyPage
-</script>
 
-<style>
-	
-    input{
-    display: grid;
-    width:50%;
-    text-align: center;
-    background-color :#eee;
-    border-radius:5px;
-    border:none;    
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans:400,700">
+  <link rel="icon" href="icon.png" type="image/icon type">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SGPA CALCULATOR</title>
+  <script>
+    function fsgpa() {
+      var vmat, vphy, vbe, veng, vcs, vpy, vmatlab;
+
+      vmat = parseInt(document.getElementById("mat").value);
+      vphy = parseInt(document.getElementById("phy").value);
+      vpy = parseInt(document.getElementById("py").value);
+      vbe = parseInt(document.getElementById("be").value);
+      vcs = parseInt(document.getElementById("cs").value);
+      veng = parseInt(document.getElementById("eng").value);
+      vmatlab = parseInt(document.getElementById("matlab").value);
+
+      sgpa = (vmat * 3 + vphy * 4 + vbe * 3 + veng * 2 + vpy * 3 + vcs * 3 + vmatlab * 1) / 19.00;
+      document.getElementById("answer").value = sgpa.toFixed(4);
     }
-	
-    button{
-    border-radius:5px;
-    border:1px solid grey;   
-    background-color :#dbd5d5;
-    text-align: center;
+
+  </script>
+
+  <style>
+    input {
+      display: grid;
+      width: 50%;
+      text-align: center;
+      background-color: #eee;
+      border-radius: 5px;
+      border: none;
     }
-	
+
+    button {
+      border-radius: 5px;
+      border: 1px solid grey;
+      background-color: #dbd5d5;
+      text-align: center;
+    }
+
     @media only screen and (max-width: 768px) {
-        input,.table {
+
+      input,
+      .table {
         width: 75%;
-        }
+      }
     }
-	
-    *{
-    font-size: 18px;
-    font-family: "Google Sans", sans-serif;
+
+    * {
+      font-size: 18px;
+      font-family: "Google Sans", sans-serif;
     }
 
     nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-    background-color: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      background-color: #eee;
     }
 
     .logo {
-    height: 50px;
+      height: 50px;
     }
-	
+
     ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+      list-style: none;
+      margin: 0;
+      padding: 0;
     }
 
     li {
-    display: inline-block;
-    padding: 0.5rem;
+      display: inline-block;
+      padding: 0.5rem;
     }
 
     a {
-    text-decoration: none;
-    color: #333;
+      text-decoration: none;
+      color: #333;
     }
 
-</style>
+    .credit {
+      font-size: 13px;
+    }
+  </style>
 
 </head>
-	
+
 <body>
-	
-<nav>
-  <a href="https://nmamit.nitte.edu.in"><img src="logo.png" alt="Logo" class="logo"></a>
-  <ul>
-    <li><a href="#"></a></li>
-    <li><a href="#"></a></li>
-    <li><a href="#"></a></li>
-  </ul>
-</nav>
 
-<center>
+  <nav>
+    <a href="https://nmamit.nitte.edu.in"><img src="logo.png" alt="Logo" class="logo"></a>
+    <ul>
+      <li><a href="#"></a></li>
+      <li><a href="#"></a></li>
+      <li><a href="#"></a></li>
+    </ul>
+  </nav>
 
-<p><b>SGPA CALCULATOR USING GRADE POINTS</b></p>
+  <center>
 
-
-<p>MATHS: <input id="mat" autocomplete="off"></p>
-<p>PHY: <input id="phy" autocomplete="off"></p>
-<p>PY: <input id="py" autocomplete="off"></p>
-<p>BE: <input id="be" autocomplete="off"></p>
-<p>CS: <input id="cs" autocomplete="off"></p>
-<p>ENG: <input id="eng" autocomplete="off"></p>
-<p>MATLAB: <input id="matlab"></p>
+    <p><b>SGPA CALCULATOR USING GRADE POINTS</b></p>
 
 
-<button onclick="fsgpa()">Submit</button>
-<br>
-<p>SGPA = <input id="answer" readonly></p>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<center><img src="table.png" width="50%" class="table"><center>
-<center>
+    <p>MATHS: <input id="mat" autocomplete="off"></p>
+    <p>PHY: <input id="phy" autocomplete="off"></p>
+    <p>PY: <input id="py" autocomplete="off"></p>
+    <p>BE: <input id="be" autocomplete="off"></p>
+    <p>CS: <input id="cs" autocomplete="off"></p>
+    <p>ENG: <input id="eng" autocomplete="off"></p>
+    <p>MATLAB: <input id="matlab"></p>
 
-<nav>
-  <a href="https://www.linkedin.com/in/srujanmpadmashali" style=”font-size: 13px;”>MADE BY SRUJAN MP</a>
-  <ul>
-	  
-    <li><a>
-    <select>
-  <option value="#" disabled selected>select.</option>
-  <option value="https://www.instagram.com/srujanmpadmashali/">@instagram</option>
-<option value="#">link1</option>
-    </select>
-    <button onclick="redirectToMyPage();">Go !</button>
-     </a></li>
-	  
-    <li><a href="#"></a></li>
-  </ul>
-</nav>
+
+    <button onclick="fsgpa()">Submit</button>
+    <br>
+    <p>SGPA = <input id="answer" readonly></p>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <center><img src="table.png" width="50%" class="table">
+      <center>
+        <center>
+
+          <nav>
+            <a href="https://www.linkedin.com/in/srujanmpadmashali" class="credit">MADE BY SRUJAN MP</a>
+            <ul>
+
+              <li><a href="#">*</a></li>
+              <li><a href="#"></a></li>
+              <li><a href="#"></a></li>
+            </ul>
+          </nav>
 </body>
+
 </html>
