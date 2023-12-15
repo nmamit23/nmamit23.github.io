@@ -85,6 +85,16 @@
     .credit {
       font-size: 14px;
     }
+    
+    .dark-mode {
+            background-color: black;
+            color: white;
+        }
+ 
+        .light-mode {
+            background-color: white;
+            color: black;
+        }
   </style>
 
 </head>
@@ -151,6 +161,33 @@
               <li><a href="#">*</a></li>
             </ul>
           </nav>
+
+
+
+
+  
+   <h3 id="DarkModetext">Dark Mode is OFF</h3>
+    <button onclick="darkMode()">Darkmode</button>
+    <button onclick="lightMode()">LightMode</button>
+    <script>
+        function darkMode() {
+            let element = document.body;
+            let content = document.getElementById("DarkModetext");
+            element.className = "dark-mode";
+            content.innerText = "Dark Mode is ON";
+        }
+        function lightMode() {
+            let element = document.body;
+            let content = document.getElementById("DarkModetext");
+            element.className = "light-mode";
+            content.innerText = "Dark Mode is OFF";
+        }
+    </script>
+
+
+
+
+  
 </body>
 
 </html>
