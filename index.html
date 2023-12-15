@@ -95,6 +95,10 @@
             background-color: white;
             color: black;
         }
+    .dark-nav{
+      background-color:#242322;
+      color:white;
+      }
   </style>
 
 </head>
@@ -172,8 +176,10 @@
     <script>
         function darkMode() {
             let element = document.body;
+            let element2=document.nav;
             let content = document.getElementById("DarkModetext");
             element.className = "dark-mode";
+            element2.className = "dark-nav";
             content.innerText = "Dark Mode is ON";
         }
         function lightMode() {
