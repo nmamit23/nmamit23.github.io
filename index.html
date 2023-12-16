@@ -10,17 +10,36 @@
     function fsgpa() {
       var vmat, vphy, vbe, veng, vcs, vpy, vmatlab;
 
-      vmat = parseInt(document.getElementById("mat").value);
-      vphy = parseInt(document.getElementById("phy").value);
-      vpy = parseInt(document.getElementById("py").value);
-      vbe = parseInt(document.getElementById("be").value);
-      vcs = parseInt(document.getElementById("cs").value);
-      veng = parseInt(document.getElementById("eng").value);
-      vmatlab = parseInt(document.getElementById("matlab").value);
+      vmat =calculateGradePoint(parseInt(document.getElementById("mat").value));
+      vphy = calculateGradePoint(parseInt(document.getElementById("phy").value));
+      vpy = calculateGradePoint(parseInt(document.getElementById("py").value));
+      vbe = calculateGradePoint(parseInt(document.getElementById("be").value));
+      vcs = calculateGradePoint(parseInt(document.getElementById("cs").value));
+      veng = calculateGradePoint(parseInt(document.getElementById("eng").value));
+      vmatlab = calculateGradePoint(parseInt(document.getElementById("matlab").value));
 
       sgpa = (vmat * 3 + vphy * 4 + vbe * 3 + veng * 2 + vpy * 3 + vcs * 3 + vmatlab * 1) / 19.00;
       document.getElementById("answer").value = sgpa.toFixed(4);
     }
+    function calculateGradePoint(percentage) {
+  if (percentage >= 90) {
+    return 10;
+  } else if (percentage >= 80) {
+    return 9;
+  } else if (percentage >= 70) {
+    return 8;
+  } else if (percentage >= 60) {
+    return 7;
+  } else if (percentage >= 55) {
+    return 6;
+  } else if (percentage >= 50) {
+    return 5;
+  } else if (percentage >= 40) {
+    return 4;
+  } else {
+    return 0;
+  }
+}
 
   </script>
 
@@ -118,7 +137,7 @@
 
   <center>
 
-    <p><b>SGPA CALCULATOR USING GRADE POINTS</b></p>
+    <p><b>SGPA CALCULATOR USING PERCENTAGE</b></p>
 
 
     <p>MATHS: <input id="mat" autocomplete="off"></p>
