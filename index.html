@@ -8,21 +8,65 @@
   <title>SGPA CALCULATOR</title>
   <script>
     function fsgpa() {
-      var vmat, vphy, vbe, veng, vcs, vpy, vmatlab;
+      var vmat,vche,vadld,vcpp,vbee,vit,vbio,vev;
+      
+  
 
+      
+        
+      
       vmat =calculateGradePoint(parseInt(document.getElementById("mat").value));
-      vphy = calculateGradePoint(parseInt(document.getElementById("phy").value));
-      vpy = calculateGradePoint(parseInt(document.getElementById("py").value));
-      vbe = calculateGradePoint(parseInt(document.getElementById("be").value));
-      vcs = calculateGradePoint(parseInt(document.getElementById("cs").value));
-      veng = calculateGradePoint(parseInt(document.getElementById("eng").value));
-      vmatlab = calculateGradePoint(parseInt(document.getElementById("matlab").value));
+      vche =calculateGradePoint(parseInt(document.getElementById("che").value));
+      vadld =calculateGradePoint(parseInt(document.getElementById("adld").value));
+      vcpp =calculateGradePoint(parseInt(document.getElementById("cpp").value));
+      vbee =calculateGradePoint(parseInt(document.getElementById("bee").value));
+      vit =calculateGradePoint(parseInt(document.getElementById("it").value));
+      vbio =calculateGradePoint(parseInt(document.getElementById("bio").value));
+      vev =calculateGradePoint(parseInt(document.getElementById("ev").value));
+      
+      
 
-      sgpa = (vmat * 3 + vphy * 4 + vbe * 3 + veng * 2 + vpy * 3 + vcs * 3 + vmatlab * 1) / 19.00;
+      sgpa = (vmat * 4 + vche * 4 + vadld * 3 + vcpp * 3 + vbee * 3 + vit * 2 + vbio * 1 + vev * 1) / 21.00;
+      
+
+
+      vmat = parseInt(document.getElementById("mat").value);
+      vche = parseInt(document.getElementById("che").value);
+      vadld = parseInt(document.getElementById("adld").value);
+      vcpp = parseInt(document.getElementById("cpp").value);
+      vbee = parseInt(document.getElementById("bee").value);
+      vit = parseInt(document.getElementById("it").value);
+      vbio = parseInt(document.getElementById("bio").value);
+      vev = parseInt(document.getElementById("ev").value);
+
+      if (vmat > 100 || vche > 100 || vadld > 100 || vcpp > 100 || vbee > 100 || vit > 100 || vbio > 100 || vev > 100) {
+        tempAlert("Please enter valid percentage", 2000);
+        return;
+      }
+
+      if (vmat < 0 || vche < 0 || vadld < 0 || vcpp < 0 || vbee < 0 || vit < 0 || vbio < 0 || vev < 0) {
+        tempAlert("Please enter valid percentage", 2000);
+        return;
+      }
+      var rand=Math.floor(Math.random() * 10);
+      if(rand==1){
+        tempAlert("Please make sure all values are out of 100", 2000);
+      }
+  
+      else if(rand>2&&rand<5){
+        tempAlert("&#127881;", 2000);
+        
+      }
+      else if(sgpa>=10){
+        tempAlert("&#129535;", 2000);
+        
+      }
+
       document.getElementById("answer").value = sgpa.toFixed(4);
     }
     function calculateGradePoint(percentage) {
   if (percentage >= 90) {
+    
     return 10;
   } else if (percentage >= 80) {
     return 9;
@@ -40,7 +84,15 @@
     return 0;
   }
 }
-
+function tempAlert(msg, duration) {
+  var el = document.createElement("div");
+  el.setAttribute("style", "position: fixed; bottom: 20px; left: 20px; background-color: rgba(30, 30, 128, 0.8); color: white; padding: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);");
+  el.innerHTML = msg;
+  setTimeout(function() {
+    el.parentNode.removeChild(el);
+  }, duration);
+  document.body.appendChild(el);
+}
   </script>
 
   <style>
@@ -59,7 +111,9 @@
       background-color: #dbd5d5;
       text-align: center;
     }
-
+    button:hover {
+      background-color: #c9c9c9;
+    }
     @media only screen and (max-width: 768px) {
 
       input,
@@ -136,27 +190,34 @@
   </nav>
 
   <center>
-
+ 
     <p><b>SGPA CALCULATOR USING PERCENTAGE</b></p>
     <p style="font-size:13px;">50% CIE + 50% SEE</p>
     <br>
-    <p>MATHS: <input id="mat" autocomplete="off"></p>
-    <p>PHY: <input id="phy" autocomplete="off"></p>
-    <p>PY: <input id="py" autocomplete="off"></p>
-    <p>BE: <input id="be" autocomplete="off"></p>
-    <p>CS: <input id="cs" autocomplete="off"></p>
-    <p>ENG: <input id="eng" autocomplete="off"></p>
-    <p>MATLAB: <input id="matlab" autocomplete="off"></p>
-
-
+    <p>Mathematics: 
+      <input id="mat" autocomplete="off"></p>
+    <p>Chemistry: 
+      <input id="che" autocomplete="off"></p>
+    <p>Applied Digital Logic Design: 
+      <input id="adld" autocomplete="off"></p>
+    <p>C Programming: 
+      <input id="cpp" autocomplete="off"></p>
+    <p>Basic Electrical Engineering: 
+      <input id="bee" autocomplete="off"></p>
+    <p>IT Skills: 
+      <input id="it" autocomplete="off"></p>
+    <p>Biology: 
+      <input id="bio" autocomplete="off"></p>
+    <p>EV: 
+      <input id="ev" autocomplete="off"></p>
+    
     <button onclick="fsgpa()">Submit</button>
     <br>
     <p>SGPA = <input id="answer" readonly></p>
     <br>
     <br>
     <br>
-   
- <button><a href="https://nmamit23.github.io/download/">Download<a></button>
+
     <details>
   <summary>Show More</summary>
  
@@ -179,7 +240,7 @@
             <a href="https://www.linkedin.com/in/srujanmpadmashali" class="credit">MADE BY SRUJAN M PADMASHALI</a>
             <ul>
 
-              <li><a href="#">*</a></li>
+              <li><a href="https://drive.google.com/drive/folders/19_RmfiWPOk1UbOBLYiRiZsh0M12OgSSV">reference</a></li>
               <li><a href="#">*</a></li>
               <li><a href="#">*</a></li>
             </ul>
