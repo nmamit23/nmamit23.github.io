@@ -8,61 +8,60 @@
   <title>SGPA CALCULATOR</title>
   <script>
     function fsgpa() {
-      var vmat,vche,vadld,vcpp,vbee,vit,vbio,vev;
-      
-  
+      var voop, vcod, vesc, vunix, vids, vds, vmaths;
+
+  // Read and validate input values
+  voop = calculateGradePoint(parseInt(document.getElementById("oop").value));
+  vcod = calculateGradePoint(parseInt(document.getElementById("cod").value));
+  vesc = calculateGradePoint(parseInt(document.getElementById("esc").value));
+  vunix = calculateGradePoint(parseInt(document.getElementById("unix").value));
+  vids = calculateGradePoint(parseInt(document.getElementById("ids").value));
+  vds = calculateGradePoint(parseInt(document.getElementById("ds").value));
+  vmaths = calculateGradePoint(parseInt(document.getElementById("maths").value));
 
       
-        
+var sgpa = (voop * 4 + vcod * 3 + vesc * 2 + vunix * 1 + vids * 3 + vds * 4 + vmaths * 3) / 20.0;
+
+  if ([voop, vcod, vesc, vunix, vids, vds, vmaths].some(val => isNaN(val) || val < 0 || val > 100)) {
+    tempAlert("Please enter valid percentages (0-100)", 2000);
+    return;
+  }
+
+voop = parseInt(document.getElementById("oop").value);
+vcod = parseInt(document.getElementById("cod").value);
+vesc = parseInt(document.getElementById("esc").value);
+vunix = parseInt(document.getElementById("unix").value);
+vids = parseInt(document.getElementById("ids").value);
+vds = parseInt(document.getElementById("ds").value);
+vmaths = parseInt(document.getElementById("maths").value);
+
+// Check if percentages are valid (0-100)
+if (voop > 100 || vcod > 100 || vesc > 100 || vunix > 100 || vids > 100 || vds > 100 || vmaths > 100) {
+  tempAlert("Please enter valid percentage (0-100)", 2000);
+  return;
+}
+
+if (voop < 0 || vcod < 0 || vesc < 0 || vunix < 0 || vids < 0 || vds < 0 || vmaths < 0) {
+  tempAlert("Please enter valid percentage (0-100)", 2000);
+  return;
+}
+
+// Add some random alerts for fun or edge cases
+var rand = Math.floor(Math.random() * 10);
+if (rand == 1) {
+  tempAlert("Please make sure all values are out of 100", 2000);
+} else if (rand > 2 && rand < 5) {
+  tempAlert("&#127881;", 2000);
+} else if (sgpa >= 10) {
+  tempAlert("&#129535;", 2000);
+}
+
+// Display SGPA result
+document.getElementById("answer").value = sgpa.toFixed(4);
+
+
+
       
-      vmat =calculateGradePoint(parseInt(document.getElementById("mat").value));
-      vche =calculateGradePoint(parseInt(document.getElementById("che").value));
-      vadld =calculateGradePoint(parseInt(document.getElementById("adld").value));
-      vcpp =calculateGradePoint(parseInt(document.getElementById("cpp").value));
-      vbee =calculateGradePoint(parseInt(document.getElementById("bee").value));
-      vit =calculateGradePoint(parseInt(document.getElementById("it").value));
-      vbio =calculateGradePoint(parseInt(document.getElementById("bio").value));
-      vev =calculateGradePoint(parseInt(document.getElementById("ev").value));
-      
-      
-
-      sgpa = (vmat * 4 + vche * 4 + vadld * 3 + vcpp * 3 + vbee * 3 + vit * 2 + vbio * 1 + vev * 1) / 21.00;
-      
-
-
-      vmat = parseInt(document.getElementById("mat").value);
-      vche = parseInt(document.getElementById("che").value);
-      vadld = parseInt(document.getElementById("adld").value);
-      vcpp = parseInt(document.getElementById("cpp").value);
-      vbee = parseInt(document.getElementById("bee").value);
-      vit = parseInt(document.getElementById("it").value);
-      vbio = parseInt(document.getElementById("bio").value);
-      vev = parseInt(document.getElementById("ev").value);
-
-      if (vmat > 100 || vche > 100 || vadld > 100 || vcpp > 100 || vbee > 100 || vit > 100 || vbio > 100 || vev > 100) {
-        tempAlert("Please enter valid percentage", 2000);
-        return;
-      }
-
-      if (vmat < 0 || vche < 0 || vadld < 0 || vcpp < 0 || vbee < 0 || vit < 0 || vbio < 0 || vev < 0) {
-        tempAlert("Please enter valid percentage", 2000);
-        return;
-      }
-      var rand=Math.floor(Math.random() * 10);
-      if(rand==1){
-        tempAlert("Please make sure all values are out of 100", 2000);
-      }
-  
-      else if(rand>2&&rand<5){
-        tempAlert("&#127881;", 2000);
-        
-      }
-      else if(sgpa>=10){
-        tempAlert("&#129535;", 2000);
-        
-      }
-
-      document.getElementById("answer").value = sgpa.toFixed(4);
     }
     function calculateGradePoint(percentage) {
   if (percentage >= 90) {
@@ -194,22 +193,21 @@ function tempAlert(msg, duration) {
     <p><b>SGPA CALCULATOR USING PERCENTAGE</b></p>
     <p style="font-size:13px;">50% CIE + 50% SEE</p>
     <br>
-    <p>Mathematics: 
-      <input id="mat" autocomplete="off"></p>
-    <p>Chemistry: 
-      <input id="che" autocomplete="off"></p>
-    <p>Applied Digital Logic Design: 
-      <input id="adld" autocomplete="off"></p>
-    <p>C Programming: 
-      <input id="cpp" autocomplete="off"></p>
-    <p>Basic Electrical Engineering: 
-      <input id="bee" autocomplete="off"></p>
-    <p>IT Skills: 
-      <input id="it" autocomplete="off"></p>
-    <p>Biology: 
-      <input id="bio" autocomplete="off"></p>
-    <p>EV: 
-      <input id="ev" autocomplete="off"></p>
+    <p>Object-Oriented Programming (OOP): 
+  <input id="oop" autocomplete="off"></p>
+<p>Computer Organization and Design (COD): 
+  <input id="cod" autocomplete="off"></p>
+<p>Enhancing Self Competence (ESC): 
+  <input id="esc" autocomplete="off"></p>
+<p>UNIX: 
+  <input id="unix" autocomplete="off"></p>
+<p>Integrated Data Science (IDS): 
+  <input id="ids" autocomplete="off"></p>
+<p>Data Structures (DS): 
+  <input id="ds" autocomplete="off"></p>
+<p>Mathematics: 
+  <input id="maths" autocomplete="off"></p>
+
     
     <button onclick="fsgpa()">Submit</button>
     <br>
