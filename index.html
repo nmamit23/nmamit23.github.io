@@ -19,7 +19,8 @@
     { id: "dps", credits: 1 },
     { id: "idt", credits: 1 },
     { id: "vs", credits: 1 },
-    { id: "eic", credits: 0 }
+    { id: "eic", credits: 0 },
+    { id: "internship", credits: 2 } // Added Internship subject
   ];
 
   let totalCredits = 0;
@@ -49,6 +50,7 @@
     tempAlert("🔥 Keep it up!", 2000);
   }
 }
+
 
     function calculateGradePoint(percentage) {
   if (percentage >= 90) {
@@ -190,6 +192,8 @@ function tempAlert(msg, duration) {
 <p>IDT - Innovation and Design Thinking (1): <input id="idt" autocomplete="off"></p>
 <p>DVT - Department Specific Vocational Education Course (1): <input id="vs" autocomplete="off"></p>
 <p>EOIC - Essence of Indian Culture (0): <input id="eic" autocomplete="off"></p>
+<p>Internship (2): <input id="internship" autocomplete="off"></p>
+
 
 
 
