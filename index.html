@@ -8,61 +8,48 @@
   <title>SGPA CALCULATOR</title>
   <script>
     function fsgpa() {
-      var voop, vcod, vesc, vunix, vids, vds, vmaths;
+  const subjects = [
+    { id: "linear", credits: 3 },
+    { id: "daa", credits: 4 },
+    { id: "web", credits: 4 },
+    { id: "dbms", credits: 3 },
+    { id: "se", credits: 3 },
+    { id: "dbapp", credits: 1 },
+    { id: "uhv", credits: 1 },
+    { id: "dps", credits: 1 },
+    { id: "idt", credits: 1 },
+    { id: "vs", credits: 1 },
+    { id: "eic", credits: 0 }
+  ];
 
-  // Read and validate input values
-  voop = calculateGradePoint(parseInt(document.getElementById("oop").value));
-  vcod = calculateGradePoint(parseInt(document.getElementById("cod").value));
-  vesc = calculateGradePoint(parseInt(document.getElementById("esc").value));
-  vunix = calculateGradePoint(parseInt(document.getElementById("unix").value));
-  vids = calculateGradePoint(parseInt(document.getElementById("ids").value));
-  vds = calculateGradePoint(parseInt(document.getElementById("ds").value));
-  vmaths = calculateGradePoint(parseInt(document.getElementById("maths").value));
+  let totalCredits = 0;
+  let weightedSum = 0;
 
-      
-var sgpa = (voop * 4 + vcod * 3 + vesc * 2 + vunix * 1 + vids * 3 + vds * 4 + vmaths * 3) / 20.0;
+  for (const subject of subjects) {
+    const value = parseInt(document.getElementById(subject.id).value);
+    if (isNaN(value) || value < 0 || value > 100) {
+      tempAlert("Please enter valid percentages (0-100)", 2000);
+      return;
+    }
 
-  if ([voop, vcod, vesc, vunix, vids, vds, vmaths].some(val => isNaN(val) || val < 0 || val > 100)) {
-    tempAlert("Please enter valid percentages (0-100)", 2000);
-    return;
+    const gradePoint = calculateGradePoint(value);
+    weightedSum += gradePoint * subject.credits;
+    totalCredits += subject.credits;
   }
 
-voop = parseInt(document.getElementById("oop").value);
-vcod = parseInt(document.getElementById("cod").value);
-vesc = parseInt(document.getElementById("esc").value);
-vunix = parseInt(document.getElementById("unix").value);
-vids = parseInt(document.getElementById("ids").value);
-vds = parseInt(document.getElementById("ds").value);
-vmaths = parseInt(document.getElementById("maths").value);
+  const sgpa = (weightedSum / totalCredits).toFixed(4);
 
-// Check if percentages are valid (0-100)
-if (voop > 100 || vcod > 100 || vesc > 100 || vunix > 100 || vids > 100 || vds > 100 || vmaths > 100) {
-  tempAlert("Please enter valid percentage (0-100)", 2000);
-  return;
+  document.getElementById("answer").value = sgpa;
+
+  if (sgpa >= 10) {
+    tempAlert("🎓 Perfect 10! You're on fire!", 2000);
+  } else if (sgpa >= 9) {
+    tempAlert("💯 Great job!", 2000);
+  } else if (sgpa >= 8) {
+    tempAlert("🔥 Keep it up!", 2000);
+  }
 }
 
-if (voop < 0 || vcod < 0 || vesc < 0 || vunix < 0 || vids < 0 || vds < 0 || vmaths < 0) {
-  tempAlert("Please enter valid percentage (0-100)", 2000);
-  return;
-}
-
-// Add some random alerts for fun or edge cases
-var rand = Math.floor(Math.random() * 10);
-if (rand == 1) {
-  tempAlert("Please make sure all values are out of 100", 2000);
-} else if (rand > 2 && rand < 5) {
-  tempAlert("&#127881;", 2000);
-} else if (sgpa >= 10) {
-  tempAlert("&#129535;", 2000);
-}
-
-// Display SGPA result
-document.getElementById("answer").value = sgpa.toFixed(4);
-
-
-
-      
-    }
     function calculateGradePoint(percentage) {
   if (percentage >= 90) {
     
@@ -192,20 +179,18 @@ function tempAlert(msg, duration) {
     <p><b>SGPA CALCULATOR USING PERCENTAGE</b></p>
     <p style="font-size:13px;">50% CIE + 50% SEE</p>
     <br>
-    <p>Object-Oriented Programming (OOP): 
-  <input id="oop" autocomplete="off"></p>
-<p>Computer Organization and Design (COD): 
-  <input id="cod" autocomplete="off"></p>
-<p>Enhancing Self Competence (ESC): 
-  <input id="esc" autocomplete="off"></p>
-<p>UNIX: 
-  <input id="unix" autocomplete="off"></p>
-<p>Introduction to Data Science (IDS): 
-  <input id="ids" autocomplete="off"></p>
-<p>Data Structure (DS): 
-  <input id="ds" autocomplete="off"></p>
-<p>Mathematics: 
-  <input id="maths" autocomplete="off"></p>
+    <p>Linear Algebra and its Applications: <input id="linear" autocomplete="off"></p>
+<p>Design and Analysis of Algorithms: <input id="daa" autocomplete="off"></p>
+<p>Internet & Web Programming: <input id="web" autocomplete="off"></p>
+<p>Database Management Systems: <input id="dbms" autocomplete="off"></p>
+<p>Introduction to Software Engineering: <input id="se" autocomplete="off"></p>
+<p>Database Applications: <input id="dbapp" autocomplete="off"></p>
+<p>Universal Human Values: <input id="uhv" autocomplete="off"></p>
+<p>Developing Professional Skills: <input id="dps" autocomplete="off"></p>
+<p>Innovation and Design Thinking: <input id="idt" autocomplete="off"></p>
+<p>Department Specific Vocational Education Course: <input id="vs" autocomplete="off"></p>
+<p>Essence of Indian Culture: <input id="eic" autocomplete="off"></p>
+
 
     
     <button onclick="fsgpa()">Submit</button>
