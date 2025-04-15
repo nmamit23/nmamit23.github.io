@@ -1,214 +1,242 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans:400,700">
-  <link rel="icon" href="icon.png" type="image/icon type">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SGPA CALCULATOR</title>
-  <script>
-    function fsgpa() {
-      const subjects = [
-        { id: "linear", credits: 3 },
-        { id: "daa", credits: 4 },
-        { id: "web", credits: 4 },
-        { id: "dbms", credits: 3 },
-        { id: "se", credits: 3 },
-        { id: "dbapp", credits: 1 },
-        { id: "uhv", credits: 1 },
-        { id: "dps", credits: 1 },
-        { id: "idt", credits: 1 },
-        { id: "vs", credits: 1 },
-        { id: "eic", credits: 0 },
-        { id: "internship", credits: 2 }
-      ];
-
-      let totalCredits = 0;
-      let weightedSum = 0;
-
-      for (const subject of subjects) {
-        const value = parseInt(document.getElementById(subject.id).value);
-        if (isNaN(value) || value < 0 || value > 100) {
-          tempAlert("Please enter valid percentages (0-100)", 2000);
-          return;
-        }
-
-        const gradePoint = calculateGradePoint(value);
-        weightedSum += gradePoint * subject.credits;
-        totalCredits += subject.credits;
-      }
-
-      const sgpa = (weightedSum / totalCredits).toFixed(4);
-      document.getElementById("answer").value = sgpa;
-
-      if (sgpa >= 10) {
-        tempAlert("🎓 Perfect 10! You're on fire!", 2000);
-      } else if (sgpa >= 9) {
-        tempAlert("💯 Great job!", 2000);
-      } else if (sgpa >= 8) {
-        tempAlert("🔥 Keep it up!", 2000);
-      }
-    }
-
-    function calculateGradePoint(percentage) {
-      if (percentage >= 90) return 10;
-      else if (percentage >= 80) return 9;
-      else if (percentage >= 70) return 8;
-      else if (percentage >= 60) return 7;
-      else if (percentage >= 55) return 6;
-      else if (percentage >= 50) return 5;
-      else if (percentage >= 40) return 4;
-      else return 0;
-    }
-
-    function tempAlert(msg, duration) {
-      var el = document.createElement("div");
-      el.setAttribute("style", "position: fixed; bottom: 20px; left: 20px; background-color: rgba(50, 50, 150, 0.8); color: white; padding: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);");
-      el.innerHTML = msg;
-      setTimeout(function () {
-        el.parentNode.removeChild(el);
-      }, duration);
-      document.body.appendChild(el);
-    }
-  </script>
-
+  <meta charset="UTF-8">
+  <title>SGPA Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    /* Using Tailwind's dark mode classes and custom styles */
     body {
-      background-color: #121212;
-      color: #ffffff;
+      font-family: 'Inter', sans-serif; /* Using Inter font */
     }
-
-    input {
-      display: grid;
-      width: 50%;
-      text-align: center;
-      background-color: #1e1e1e;
-      color: white;
-      border-radius: 5px;
-      border: 1px solid #444;
-      padding: 6px;
+    /* Custom styles for input placeholders in dark mode */
+    input::placeholder {
+        color: #9ca3af; /* gray-400 */
+        opacity: 1; /* Ensure placeholder is visible */
     }
-
-    button {
-      border-radius: 5px;
-      border: none;
-      background-color: #2e2e2e;
-      color: white;
-      padding: 8px 16px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #444;
-    }
-
-    @media only screen and (max-width: 768px) {
-      input,
-      .table {
-        width: 75%;
-      }
-    }
-
-    * {
-      font-size: 18px;
-      font-family: "Google Sans", sans-serif;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem;
-      background-color: #1f1f1f;
-      color: white;
-    }
-
-    .logo {
-      height: 50px;
-    }
-
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    li {
-      display: inline-block;
-      padding: 0.5rem;
-    }
-
-    a {
-      text-decoration: none;
-      color: #66ccff;
-    }
-
-    .credit {
-      font-size: 14px;
-    }
-
-    summary {
-      cursor: pointer;
-    }
-
-    details {
-      background-color: #1b1b1b;
-      padding: 1rem;
-      border-radius: 10px;
-      width: 90%;
-      margin: auto;
-    }
-
-    .table {
-      border: 1px solid #444;
-      border-radius: 8px;
+    /* Custom styles for better table borders in dark mode */
+    table, th, td {
+        border-color: #4b5563; /* gray-600 */
     }
   </style>
 </head>
 
-<body>
-  <nav>
-    <a href="https://www.linkedin.com/in/srujanmpadmashali" class="credit">MADE BY SRUJAN M PADMASHALI</a>
-    <ul>
-      <li><a href="https://drive.google.com/drive/folders/19_RmfiWPOk1UbOBLYiRiZsh0M12OgSSV">reference</a></li>
-      <li><a href="#">*</a></li>
-      <li><a href="#">*</a></li>
-    </ul>
-  </nav>
+<body class="bg-gray-900 text-white p-4 md:p-8">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-2xl md:text-3xl font-bold mb-2 text-center text-blue-400">SGPA Calculator (This Semester)</h1>
+    <p class="text-sm text-gray-400 mb-6 text-center">*Use at your own risk. Ensure marks entered are correct.</p>
 
-  <center>
-    <p><b>SGPA CALCULATOR USING PERCENTAGE</b></p>
-    <p style="font-size:13px;">50% CIE + 50% SEE</p>
-    <br>
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse border border-gray-600 mb-6 text-sm md:text-base">
+        <thead class="bg-gray-800">
+          <tr>
+            <th class="border border-gray-600 px-2 py-3">Subject</th>
+            <th class="border border-gray-600 px-2 py-3">MSE 1</th>
+            <th class="border border-gray-600 px-2 py-3">MSE 2</th>
+            <th class="border border-gray-600 px-2 py-3">Task</th>
+            <th class="border border-gray-600 px-2 py-3">Project</th>
+            <th class="border border-gray-600 px-2 py-3">Lab MSE</th>
+            <th class="border border-gray-600 px-2 py-3">SEE</th>
+          </tr>
+        </thead>
+        <tbody id="subjectTable" class="bg-gray-800">
+          </tbody>
+      </table>
+    </div>
 
-    <p>Maths - Linear Algebra and its Applications (3): <input id="linear" autocomplete="off"></p>
-    <p>DAA - Design and Analysis of Algorithms (4): <input id="daa" autocomplete="off"></p>
-    <p>IWP - Internet & Web Programming (4): <input id="web" autocomplete="off"></p>
-    <p>DBMS - Database Management Systems (3): <input id="dbms" autocomplete="off"></p>
-    <p>ISE - Introduction to Software Engineering (3): <input id="se" autocomplete="off"></p>
-    <p>DBMS LAB - Database Applications (1): <input id="dbapp" autocomplete="off"></p>
-    <p>UHV - Universal Human Values (1): <input id="uhv" autocomplete="off"></p>
-    <p>DPS - Developing Professional Skills (1): <input id="dps" autocomplete="off"></p>
-    <p>IDT - Innovation and Design Thinking (1): <input id="idt" autocomplete="off"></p>
-    <p>DVT - Department Specific Vocational Education Course (1): <input id="vs" autocomplete="off"></p>
-    <p>EOIC - Essence of Indian Culture (0): <input id="eic" autocomplete="off"></p>
-    <p>Internship (2): <input id="internship" autocomplete="off"></p>
+    <div class="text-center mb-6">
+        <button onclick="calculateSGPA()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition duration-200 ease-in-out shadow-md">
+            Calculate SGPA
+        </button>
+    </div>
 
-    <button onclick="fsgpa()">Submit</button>
-    <br>
-    <p>SGPA = <input id="answer" readonly></p>
-    <br><br><br>
+    <div id="messageBox" class="mt-6 p-4 rounded-lg text-center text-lg font-semibold hidden">
+    </div>
 
-    <details>
-      <summary>Show More</summary>
-      <pre>
-<center><img src="table.png" width="50%" class="table"></center>
-<center><img src="evaluation.png" width="50%" class="table"><br>
-<a href="https://nmamit.nitte.edu.in/syllabus/ndu/2023-27/B.Tech._IS_Regulations_2023.pdf" style="font-size:10px;">Calculated based upon information provided by NDU in Regulations<br>and Curriculum for Bachelor of Technology</a></center>
-</pre>
-    </details>
-  </center>
-  <br><br><br>
+  </div>
+
+  <script>
+    const subjects = [
+        // Define subject data: name, id, credits, and marking scheme
+        { name: "Maths (Linear Algebra)", id: "linear", credits: 3, scheme: { mse1: 20, mse2: 20, task: 10, project: 0, lab: 0, see: 100 } },
+        { name: "DAA", id: "daa", credits: 4, scheme: { mse1: 20, mse2: 20, task: 10, project: 0, lab: 20, see: 100 } }, // Special CIE calculation
+        { name: "IWP", id: "iwp", credits: 4, scheme: { mse1: 20, mse2: 20, task: 10, project: 0, lab: 20, see: 100 } }, // Special CIE calculation
+        { name: "DBMS", id: "dbms", credits: 3, scheme: { mse1: 15, mse2: 15, task: 0, project: 20, lab: 0, see: 100 } },
+        { name: "ISE", id: "se", credits: 3, scheme: { mse1: 20, mse2: 20, task: 10, project: 0, lab: 0, see: 100 } },
+        { name: "DBMS LAB", id: "dbapp", credits: 1, scheme: { mse1: 50, mse2: 0, task: 0, project: 0, lab: 0, see: 50 } }, // Note: mse1 is the Lab CIE total here
+        { name: "UHV", id: "uhv", credits: 1, scheme: { mse1: 20, mse2: 20, task: 10, project: 0, lab: 0, see: 0 } }, // No SEE for UHV
+        { name: "DPS", id: "dps", credits: 1, scheme: { mse1: 20, mse2: 20, task: 10, project: 0, lab: 0, see: 50 } },
+        { name: "IDT", id: "idt", credits: 1, scheme: { mse1: 15, mse2: 15, task: 0, project: 20, lab: 0, see: 50 } },
+        { name: "DVT", id: "vs", credits: 1, scheme: { mse1: 50, mse2: 0, task: 0, project: 0, lab: 0, see: 50 } }, // Note: mse1 is the Lab CIE total here
+        { name: "Internship", id: "internship", credits: 2, scheme: { mse1: 0, mse2: 0, task: 0, project: 0, lab: 0, see: 100 } } // Only SEE for Internship
+    ];
+
+    const tableBody = document.getElementById("subjectTable");
+    const messageBox = document.getElementById('messageBox'); // Get the message box element
+
+    // Function to display messages (results or errors)
+    function showMessage(text, isError = false) {
+        messageBox.textContent = text;
+        messageBox.classList.remove('hidden', 'bg-red-500', 'text-white', 'bg-green-500'); // Remove previous classes
+        if (isError) {
+            messageBox.classList.add('bg-red-500', 'text-white'); // Error styling
+        } else {
+            messageBox.classList.add('bg-green-500', 'text-gray-900'); // Success styling
+        }
+        messageBox.classList.remove('hidden'); // Make it visible
+    }
+
+    // Populate the table with subjects and input fields
+    subjects.forEach(sub => {
+      const row = document.createElement("tr");
+      row.classList.add('border-b', 'border-gray-700'); // Add bottom border to rows
+
+      // Function to create a table cell with an input field if marks are applicable
+      const createInputCell = (key) => {
+        const maxMarks = sub.scheme[key];
+        if (maxMarks > 0) {
+          // If marks are applicable, create an input field
+          return `<td class="border border-gray-600 px-2 py-2 text-center">
+                    <input id="${sub.id}_${key}" type="number" step="0.1" min="0" max="${maxMarks}"
+                           placeholder=" / ${maxMarks}"
+                           class="w-20 md:w-24 p-1.5 bg-gray-700 text-white border border-gray-600 rounded text-center focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  </td>`;
+        } else {
+          // If not applicable, create an empty cell with a placeholder dash
+          return `<td class="border border-gray-600 px-2 py-2 text-center text-gray-500">-</td>`;
+        }
+      };
+
+      // Construct the table row HTML
+      row.innerHTML = `
+        <td class="border border-gray-600 px-2 py-2 font-medium text-left">${sub.name} (${sub.credits} Cr)</td>
+        ${createInputCell('mse1')}
+        ${createInputCell('mse2')}
+        ${createInputCell('task')}
+        ${createInputCell('project')}
+        ${createInputCell('lab')}
+        ${createInputCell('see')}
+      `;
+      tableBody.appendChild(row);
+    });
+
+    // Function to safely get and validate numeric value from an input field
+    function getValidatedValue(subject, key) {
+        const input = document.getElementById(`${subject.id}_${key}`);
+        const maxMarks = subject.scheme[key];
+
+        // If the input field doesn't exist or max marks is 0, return 0
+        if (!input || maxMarks === 0) return 0;
+
+        const value = input.value.trim(); // Trim whitespace
+
+        // If the input is empty, treat it as 0 (or handle as needed, e.g., require input)
+        if (value === '') {
+            // Optionally show a warning or default to 0
+             // console.warn(`Empty input for ${subject.name} - ${key.toUpperCase()}. Assuming 0.`);
+            return 0; // Defaulting to 0 if empty
+        }
+
+        const numValue = parseFloat(value);
+
+        // Validate the numeric value
+        if (isNaN(numValue) || numValue < 0 || numValue > maxMarks) {
+            showMessage(`Invalid input in ${subject.name} for ${key.toUpperCase()}. Enter a number between 0 and ${maxMarks}.`, true);
+            input.focus(); // Focus the invalid input field
+            input.classList.add('border-red-500', 'ring-red-500'); // Highlight error
+            throw new Error("Invalid input"); // Stop calculation
+        } else {
+            input.classList.remove('border-red-500', 'ring-red-500'); // Remove error highlight if valid
+        }
+        return numValue;
+    }
+
+
+    // Function to calculate the SGPA
+    function calculateSGPA() {
+        let totalCredits = 0;
+        let weightedSum = 0;
+        messageBox.classList.add('hidden'); // Hide previous messages
+
+        try { // Use try...catch to handle validation errors gracefully
+            for (const sub of subjects) {
+                let cieScaled = 0; // Initialize scaled CIE marks
+
+                // --- Special CIE Calculation for DAA and IWP ---
+                if (sub.id === 'daa' || sub.id === 'iwp') {
+                    const mse1Marks = getValidatedValue(sub, 'mse1');
+                    const mse2Marks = getValidatedValue(sub, 'mse2');
+                    const taskMarks = getValidatedValue(sub, 'task');
+                    const labMarks = getValidatedValue(sub, 'lab'); // Lab marks are out of 20
+
+                    const theoryCIETotalPossible = sub.scheme.mse1 + sub.scheme.mse2 + sub.scheme.task; // Should be 50
+                    const theoryCIEObtained = mse1Marks + mse2Marks + taskMarks;
+
+                    // Scale theory CIE (MSE1+MSE2+Task) from 50 down to 30
+                    const theoryCIEScaled = theoryCIETotalPossible > 0 ? (theoryCIEObtained / theoryCIETotalPossible) * 30 : 0;
+
+                    // Final CIE is scaled theory (out of 30) + lab marks (out of 20)
+                    cieScaled = theoryCIEScaled + labMarks; // Total CIE out of 50
+
+                }
+                // --- Default CIE Calculation for other subjects ---
+                else {
+                    const cieComponents = ["mse1", "mse2", "task", "project", "lab"];
+                    let cieObtained = 0;
+                    let cieTotalPossible = 0;
+
+                    cieComponents.forEach(key => {
+                        if (sub.scheme[key] > 0) { // Only consider components with possible marks > 0
+                            cieObtained += getValidatedValue(sub, key);
+                            cieTotalPossible += sub.scheme[key];
+                        }
+                    });
+
+                    // Scale the total CIE obtained to be out of 50
+                    cieScaled = cieTotalPossible > 0 ? (cieObtained / cieTotalPossible) * 50 : 0;
+                }
+
+                // --- SEE Calculation (common for all subjects with SEE) ---
+                let seeScaled = 0;
+                if (sub.scheme.see > 0) {
+                    const seeMarks = getValidatedValue(sub, 'see');
+                    // Scale SEE marks (usually out of 100 or 50) to be out of 50
+                    seeScaled = (seeMarks / sub.scheme.see) * 50;
+                }
+
+                // --- Final Percentage and Grade Point ---
+                const finalPercentage = cieScaled + seeScaled; // Total percentage out of 100
+                const gradePoint = getGradePoint(finalPercentage); // Get grade point based on percentage
+
+                // Accumulate weighted sum and total credits
+                weightedSum += gradePoint * sub.credits;
+                totalCredits += sub.credits;
+            } // End of loop through subjects
+
+            // Calculate final SGPA
+            const sgpa = totalCredits > 0 ? (weightedSum / totalCredits).toFixed(2) : 0;
+            showMessage(`Calculated SGPA: ${sgpa}`, false); // Display result
+
+        } catch (error) {
+            // Error already displayed by showMessage in getValidatedValue
+            console.error("Calculation stopped due to invalid input:", error.message);
+        }
+    }
+
+    // Function to determine grade point based on percentage marks
+    function getGradePoint(percent) {
+        if (percent >= 90) return 10;
+        if (percent >= 80) return 9;
+        if (percent >= 70) return 8;
+        if (percent >= 60) return 7;
+        if (percent >= 55) return 6;
+        if (percent >= 50) return 5; // Assuming 50 is the pass mark for grade 5
+        if (percent >= 40) return 4; // Assuming 40 is the pass mark for grade 4
+        return 0; // Fail grade
+    }
+
+  </script>
 </body>
-
 </html>
